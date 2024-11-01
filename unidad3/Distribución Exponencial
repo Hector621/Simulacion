@@ -1,0 +1,21 @@
+import numpy as np
+
+# Parámetros de la simulación
+promedio_llegada = 15  # Tiempo promedio entre llegadas en minutos
+tiempo_operacion = 12 * 60  # Duración del día en minutos (12 horas)
+tasa_llegada = 1 / promedio_llegada  # Tasa de llegada (lambda) en llegadas por minuto
+
+# Generación de tiempos entre llegadas hasta completar las 12 horas
+tiempos_entre_llegadas = []
+tiempo_total = 0
+
+# Simulación hasta llegar al tiempo de operación de 12 horas
+while tiempo_total < tiempo_operacion:
+    tiempo_entre_llegada = np.random.exponential(scale=promedio_llegada)
+    tiempos_entre_llegadas.append(tiempo_entre_llegada)
+    tiempo_total += tiempo_entre_llegada
+
+# Mostrar los resultados
+print("Tiempos entre llegadas de vehículos eléctricos (minutos):", tiempos_entre_llegadas)
+print("Número total de llegadas simuladas:", len(tiempos_entre_llegadas))
+print("Promedio de tiempo entre llegadas:", np.mean(tiempos_entre_llegadas))
